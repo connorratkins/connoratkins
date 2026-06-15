@@ -1210,24 +1210,35 @@
 
             try {
                 const formData = new FormData(contactForm);
+                const formObject = Object.fromEntries(formData);
                 const response = await fetch(contactForm.action, {
                     method: 'POST',
                     headers: {
+                        'Content-Type': 'application/json',
                         'Accept': 'application/json'
                     },
-                    body: formData
+                    body: JSON.stringify(formObject)
                 });
-                const result = await response.json();
+                const responseText = await response.text();
+                let result = {};
+
+                try {
+                    result = responseText ? JSON.parse(responseText) : {};
+                } catch (parseError) {
+                    result = { message: responseText };
+                }
 
                 if (response.ok && result.success) {
                     contactSuccess.style.display = 'block';
                     contactForm.reset();
                 } else {
-                    contactError.textContent = result.message || 'Something went wrong. Please email me directly at atkinsconnorr@gmail.com.';
+                    const message = result.message || response.statusText || 'The form service did not accept the message.';
+                    contactError.textContent = `${message} Please email me directly at atkinsconnorr@gmail.com.`;
                     contactError.style.display = 'block';
                 }
             } catch (error) {
-                contactError.textContent = error.message || 'Something went wrong. Please email me directly at atkinsconnorr@gmail.com.';
+                console.error('Contact form submission failed:', error);
+                contactError.textContent = 'The browser blocked the contact form request. Please email me directly at atkinsconnorr@gmail.com.';
                 contactError.style.display = 'block';
             } finally {
                 contactSubmit.disabled = false;
