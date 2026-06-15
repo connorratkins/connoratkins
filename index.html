@@ -1212,16 +1212,22 @@
                 const formData = new FormData(contactForm);
                 const response = await fetch(contactForm.action, {
                     method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
                     body: formData
                 });
+                const result = await response.json();
 
-                if (response.ok) {
+                if (response.ok && result.success) {
                     contactSuccess.style.display = 'block';
                     contactForm.reset();
                 } else {
+                    contactError.textContent = result.message || 'Something went wrong. Please email me directly at atkinsconnorr@gmail.com.';
                     contactError.style.display = 'block';
                 }
-            } catch {
+            } catch (error) {
+                contactError.textContent = error.message || 'Something went wrong. Please email me directly at atkinsconnorr@gmail.com.';
                 contactError.style.display = 'block';
             } finally {
                 contactSubmit.disabled = false;
