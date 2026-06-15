@@ -618,9 +618,11 @@
                     <a href="pdf/2026 Resume, Connor Atkins.pdf" class="btn btn-primary" download="2026 Resume, Connor Atkins.pdf">Download Resume</a>
                 </div>
                 <div class="contact-right">
-                    <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                        <input type="hidden" name="form-name" value="contact">
-                        <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+                    <form id="contact-form" name="contact" method="POST" action="https://api.web3forms.com/submit">
+                        <input type="hidden" name="access_key" value="4f7badf0-30c4-4083-8208-4a1a78ad6389">
+                        <input type="hidden" name="subject" value="New portfolio contact from connorratkins.github.io">
+                        <input type="hidden" name="from_name" value="Connor Atkins Portfolio">
+                        <input type="checkbox" name="botcheck" style="display:none">
                         <input type="text" name="name" placeholder="Your Name" autocomplete="name" required>
                         <input type="email" name="email" placeholder="Your Email" autocomplete="email" required>
                         <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
@@ -1202,15 +1204,15 @@
         contactForm.addEventListener('submit', async event => {
             event.preventDefault();
             contactSubmit.disabled = true;
-            contactSubmit.textContent = 'Sending…';
+            contactSubmit.textContent = 'Sending...';
             contactSuccess.style.display = 'none';
             contactError.style.display = 'none';
 
             try {
-                const response = await fetch('/', {
+                const formData = new FormData(contactForm);
+                const response = await fetch(contactForm.action, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(new FormData(contactForm)).toString()
+                    body: formData
                 });
 
                 if (response.ok) {
