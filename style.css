@@ -84,7 +84,7 @@ main > section {
     min-height: 100svh;
     background:
         linear-gradient(90deg, rgba(8, 8, 8, 0.94), rgba(8, 8, 8, 0.64), rgba(8, 8, 8, 0.24)),
-        url("images/optimized/background.webp") center / cover no-repeat;
+        url("images/optimized/background.webp?v=20260615-optimized") center / cover no-repeat;
     border-bottom: 1px solid var(--line);
 }
 
@@ -1300,7 +1300,7 @@ form .btn {
         min-height: 100svh;
         background:
             linear-gradient(180deg, rgba(8, 8, 8, 0.42), rgba(8, 8, 8, 0.95) 72%),
-            url("images/optimized/phoone-background.webp") center top / cover no-repeat;
+            url("images/optimized/phoone-background.webp?v=20260615-optimized") center top / cover no-repeat;
     }
 
     .site-nav {
