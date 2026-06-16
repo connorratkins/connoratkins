@@ -8,20 +8,23 @@ const buildRoot = typeof nodeRepl !== 'undefined'
   : root;
 const tmpDir = resolve(buildRoot, 'tmp/pdfs');
 const outputDir = resolve(buildRoot, 'output/pdf');
+const sitePdfDir = typeof nodeRepl !== 'undefined'
+  ? resolve(buildRoot, 'pdf')
+  : resolve(root, 'pdf');
 const websiteUrl = 'https://www.connoratkins.art';
 const websiteLabel = 'www.connoratkins.art';
 
 const colors = {
-  bg: '#080808',
-  surface: '#181818',
-  surface2: '#242424',
+  bg: '#07090c',
+  surface: '#13161b',
+  surface2: '#1b2028',
   text: '#ffffff',
-  muted: '#c4c4c4',
-  subtle: '#8f8f8f',
-  accent: '#ff004f',
-  accent2: '#29d6c8',
-  accent3: '#ffd166',
-  line: 'rgba(255,255,255,0.14)',
+  muted: '#d3d7de',
+  subtle: '#96a0ad',
+  accent: '#f04b5f',
+  accent2: '#5fd6cf',
+  accent3: '#f4c85f',
+  line: 'rgba(224,232,240,0.14)',
 };
 
 const contactLinks = [
@@ -62,8 +65,8 @@ const sharedCss = `
     min-height: 11in;
     padding: 0.34in;
     background:
-      linear-gradient(140deg, rgba(255, 0, 79, 0.12), transparent 34%),
-      linear-gradient(320deg, rgba(41, 214, 200, 0.10), transparent 36%),
+      linear-gradient(140deg, rgba(240, 75, 95, 0.10), transparent 34%),
+      linear-gradient(320deg, rgba(95, 214, 207, 0.09), transparent 36%),
       ${colors.bg};
   }
   .header {
@@ -71,7 +74,7 @@ const sharedCss = `
     border-radius: 8px;
     background: linear-gradient(135deg, ${colors.surface2}, ${colors.surface});
     padding: 0.18in 0.22in 0.16in;
-    box-shadow: 0 18px 50px rgba(0,0,0,0.38);
+    box-shadow: 0 18px 48px rgba(0,0,0,0.3);
   }
   .name-row {
     display: flex;
@@ -109,14 +112,14 @@ const sharedCss = `
     gap: 4px 8px;
     margin-top: 8px;
     color: ${colors.muted};
-    font-size: 8.2px;
+    font-size: 8.5px;
   }
   .contact a { color: ${colors.text}; }
   .sep { color: ${colors.accent}; }
   .tagline {
     margin: 0.12in 0 0;
     color: ${colors.muted};
-    font-size: 8.7px;
+    font-size: 9px;
   }
   .layout {
     display: grid;
@@ -130,16 +133,16 @@ const sharedCss = `
     background: ${colors.surface};
   }
   .panel {
-    padding: 0.13in;
+    padding: 0.14in;
   }
   .section {
-    padding: 0.13in 0.15in;
+    padding: 0.14in 0.16in;
     margin-bottom: 0.12in;
   }
   h2 {
     margin: 0 0 0.08in;
     color: ${colors.accent3};
-    font-size: 9.2px;
+    font-size: 9.7px;
     line-height: 1.1;
     text-transform: uppercase;
     letter-spacing: 0;
@@ -147,19 +150,19 @@ const sharedCss = `
   h3 {
     margin: 0;
     color: ${colors.text};
-    font-size: 9px;
+    font-size: 9.4px;
     line-height: 1.2;
   }
   .meta {
     color: ${colors.accent2};
-    font-size: 7.8px;
+    font-size: 8.2px;
     font-weight: 800;
     margin-top: 2px;
   }
   p {
     margin: 0;
     color: ${colors.muted};
-    font-size: 8.4px;
+    font-size: 8.8px;
   }
   ul {
     margin: 0;
@@ -171,16 +174,16 @@ const sharedCss = `
     margin: 0 0 5px;
     padding-left: 11px;
     color: ${colors.muted};
-    font-size: 7.75px;
+    font-size: 8.15px;
   }
   li::before {
     content: "-";
     position: absolute;
     left: 0;
-    color: ${colors.accent};
+    color: ${colors.accent3};
     font-weight: 800;
   }
-  .panel li { font-size: 7.55px; margin-bottom: 4px; }
+  .panel li { font-size: 7.95px; margin-bottom: 4px; }
   .work-item { margin-bottom: 0.1in; }
   .work-item:last-child, .section:last-child { margin-bottom: 0; }
   .portfolio-line {
@@ -188,7 +191,7 @@ const sharedCss = `
     grid-template-columns: 0.55in 1fr;
     gap: 0.06in;
     margin-bottom: 0.05in;
-    font-size: 7.8px;
+    font-size: 8.1px;
     color: ${colors.muted};
   }
   .portfolio-line strong { color: ${colors.accent2}; }
@@ -196,7 +199,7 @@ const sharedCss = `
     display: flex;
     flex-wrap: wrap;
     gap: 5px 8px;
-    font-size: 7.8px;
+    font-size: 8.1px;
     color: ${colors.text};
   }
   .links a { color: ${colors.text}; }
@@ -212,11 +215,12 @@ const sharedCss = `
     margin-top: 0.16in;
   }
   .letter-body p {
-    font-size: 9.25px;
-    margin-bottom: 0.12in;
+    font-size: 10.3px;
+    line-height: 1.46;
+    margin-bottom: 0.14in;
   }
   .address p {
-    font-size: 8.2px;
+    font-size: 8.5px;
     margin-bottom: 0.04in;
   }
   .subject {
@@ -432,6 +436,7 @@ async function firstExistingPath(paths) {
 
 await mkdir(tmpDir, { recursive: true });
 await mkdir(outputDir, { recursive: true });
+await mkdir(sitePdfDir, { recursive: true });
 
 const browserPath = await firstExistingPath([
   'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
@@ -446,32 +451,36 @@ const browser = await chromium.launch({
 try {
   const resumePdf = resolve(outputDir, 'Connor-Atkins-Resume-2026.pdf');
   const coverPdf = resolve(outputDir, 'Connor-Atkins-Cover-Letter-2026.pdf');
+  const resumeHtmlPath = resolve(outputDir, 'Connor-Atkins-Resume-2026.html');
+  const coverHtmlPath = resolve(outputDir, 'Connor-Atkins-Cover-Letter-2026.html');
   const resumePreview = resolve(tmpDir, 'resume-preview.png');
   const coverPreview = resolve(tmpDir, 'cover-letter-preview.png');
   await renderDocument(
     browser,
     resumeHtml(),
-    resolve(tmpDir, 'resume.html'),
+    resumeHtmlPath,
     resumePdf,
     resumePreview,
   );
   await renderDocument(
     browser,
     coverLetterHtml(),
-    resolve(tmpDir, 'cover-letter.html'),
+    coverHtmlPath,
     coverPdf,
     coverPreview,
   );
-  await copyFile(resumePdf, resolve(buildRoot, 'Connor-Atkins-Resume.pdf'));
-  await copyFile(coverPdf, resolve(buildRoot, 'Connor-Atkins-Cover-Letter.pdf'));
+  await copyFile(resumePdf, resolve(sitePdfDir, '2026 Resume, Connor Atkins.pdf'));
+  await copyFile(coverPdf, resolve(sitePdfDir, '2026 Cover Letter, Connor Atkins.pdf'));
   const manifest = {
     buildRoot,
     resumePdf,
     coverPdf,
+    resumeHtmlPath,
+    coverHtmlPath,
     resumePreview,
     coverPreview,
-    siteResumePdf: resolve(buildRoot, 'Connor-Atkins-Resume.pdf'),
-    siteCoverPdf: resolve(buildRoot, 'Connor-Atkins-Cover-Letter.pdf'),
+    siteResumePdf: resolve(sitePdfDir, '2026 Resume, Connor Atkins.pdf'),
+    siteCoverPdf: resolve(sitePdfDir, '2026 Cover Letter, Connor Atkins.pdf'),
   };
   await writeFile(resolve(buildRoot, 'manifest.json'), JSON.stringify(manifest, null, 2), 'utf8');
   if (typeof nodeRepl !== 'undefined') {

@@ -2,20 +2,20 @@
    Theme Variables
 ========================================================= */
 :root {
-    --bg: #080808;
-    --surface: #181818;
-    --surface-2: #242424;
+    --bg: #07090c;
+    --surface: #13161b;
+    --surface-2: #1b2028;
     --text: #ffffff;
-    --muted: #c4c4c4;
-    --subtle: #8f8f8f;
-    --accent: #ff004f;
-    --accent-2: #29d6c8;
-    --accent-3: #ffd166;
-    --line: rgba(255, 255, 255, 0.12);
-    --shadow: 0 18px 50px rgba(0, 0, 0, 0.38);
+    --muted: #d3d7de;
+    --subtle: #96a0ad;
+    --accent: #f04b5f;
+    --accent-2: #5fd6cf;
+    --accent-3: #f4c85f;
+    --line: rgba(224, 232, 240, 0.14);
+    --shadow: 0 22px 60px rgba(0, 0, 0, 0.32);
     --radius: 8px;
     --nav-height: 86px;
-    --container: min(1180px, calc(100% - 36px));
+    --container: min(1160px, calc(100% - 40px));
     --font-family: Poppins, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -37,11 +37,14 @@ body {
     margin: 0;
     min-height: 100vh;
     background:
-        linear-gradient(180deg, rgba(255, 0, 79, 0.08), transparent 420px),
-        #080808;
+        radial-gradient(circle at 12% 0%, rgba(95, 214, 207, 0.08), transparent 340px),
+        linear-gradient(180deg, rgba(240, 75, 95, 0.065), transparent 440px),
+        var(--bg);
     color: var(--text);
     font-family: var(--font-family);
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 body.modal-open {
@@ -83,7 +86,8 @@ main > section {
 .site-hero {
     min-height: 100svh;
     background:
-        linear-gradient(90deg, rgba(8, 8, 8, 0.94), rgba(8, 8, 8, 0.64), rgba(8, 8, 8, 0.24)),
+        linear-gradient(90deg, rgba(7, 9, 12, 0.95), rgba(7, 9, 12, 0.68), rgba(7, 9, 12, 0.32)),
+        linear-gradient(180deg, rgba(7, 9, 12, 0.08), rgba(7, 9, 12, 0.58)),
         url("images/optimized/background.webp?v=20260615-optimized") center / cover no-repeat;
     border-bottom: 1px solid var(--line);
 }
@@ -101,9 +105,10 @@ main > section {
     justify-content: space-between;
     gap: 22px;
     padding: 12px max(18px, calc((100vw - 1180px) / 2));
-    background: rgba(8, 8, 8, 0.78);
+    background: rgba(7, 9, 12, 0.8);
     border-bottom: 1px solid var(--line);
     backdrop-filter: blur(16px);
+    box-shadow: 0 12px 38px rgba(0, 0, 0, 0.18);
 }
 
 .logo-link {
@@ -113,7 +118,7 @@ main > section {
 }
 
 .logo {
-    width: clamp(160px, 18vw, 240px);
+    width: clamp(150px, 16vw, 220px);
     height: auto;
 }
 
@@ -140,7 +145,8 @@ main > section {
     border: 1px solid transparent;
     border-radius: var(--radius);
     text-decoration: none;
-    font-size: 0.98rem;
+    font-size: 0.92rem;
+    font-weight: 700;
     cursor: pointer;
     transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
@@ -158,7 +164,7 @@ main > section {
 }
 
 .download-link {
-    color: #080808 !important;
+    color: var(--bg) !important;
     background: var(--accent-3) !important;
     font-weight: 800;
 }
@@ -188,7 +194,7 @@ main > section {
     margin: 0;
     padding: 8px;
     list-style: none;
-    background: rgba(16, 16, 16, 0.96);
+    background: rgba(13, 16, 21, 0.96);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -222,53 +228,133 @@ main > section {
     cursor: pointer;
 }
 
+.fa-bars::before,
+.fa-xmark::before,
+.fa-chevron-down::before,
+.fa-youtube::before,
+.fa-linkedin::before,
+.fa-clapperboard::before,
+.fa-scissors::before,
+.fa-pen-nib::before,
+.fa-palette::before,
+.fa-bullseye::before,
+.fa-chart-line::before,
+.fa-envelope::before,
+.fa-phone::before {
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: 900;
+}
+
+.fa-bars::before {
+    content: "\2630";
+}
+
+.fa-xmark::before {
+    content: "\00d7";
+}
+
+.fa-chevron-down::before {
+    content: "v";
+}
+
+.fa-youtube::before {
+    content: "YT";
+    font-size: 0.68rem;
+}
+
+.fa-linkedin::before {
+    content: "in";
+    font-size: 0.78rem;
+}
+
+.fa-clapperboard::before {
+    content: "VID";
+    font-size: 0.58rem;
+}
+
+.fa-scissors::before {
+    content: "CUT";
+    font-size: 0.58rem;
+}
+
+.fa-pen-nib::before {
+    content: "PEN";
+    font-size: 0.56rem;
+}
+
+.fa-palette::before {
+    content: "ART";
+    font-size: 0.56rem;
+}
+
+.fa-bullseye::before {
+    content: "GO";
+    font-size: 0.6rem;
+}
+
+.fa-chart-line::before {
+    content: "UP";
+    font-size: 0.6rem;
+}
+
+.fa-envelope::before {
+    content: "@";
+}
+
+.fa-phone::before {
+    content: "TEL";
+    font-size: 0.62rem;
+}
+
 /* =========================================================
    Hero Text / Buttons
 ========================================================= */
 .header-text {
-    max-width: 760px;
-    padding-top: clamp(190px, 28vh, 280px);
-    padding-bottom: 80px;
+    max-width: 710px;
+    padding-top: clamp(178px, 27vh, 258px);
+    padding-bottom: 92px;
 }
 
 .header-text p {
     margin: 0;
     color: var(--accent-2);
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: clamp(0.96rem, 1.6vw, 1.14rem);
     font-weight: 800;
 }
 
 .header-text h1 {
-    margin: 18px 0 0;
-    font-size: clamp(2.8rem, 8vw, 6.6rem);
-    line-height: 1.02;
+    margin: 16px 0 0;
+    font-size: clamp(2.55rem, 7.2vw, 5.85rem);
+    line-height: 1.01;
     letter-spacing: 0;
 }
 
 .header-text span {
     color: var(--accent);
+    text-shadow: 0 0 34px rgba(240, 75, 95, 0.22);
 }
 
 .hero-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    margin-top: 34px;
+    margin-top: 30px;
 }
 
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 48px;
-    padding: 0 22px;
+    min-height: 46px;
+    padding: 0 20px;
     color: var(--text);
     border: 1px solid var(--accent);
     border-radius: var(--radius);
     text-decoration: none;
     font-weight: 800;
     cursor: pointer;
-    transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .btn:hover,
@@ -278,16 +364,23 @@ main > section {
 }
 
 .btn-primary {
-    background: var(--accent);
+    color: #fff;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0)),
+        var(--accent);
+    box-shadow: 0 12px 28px rgba(240, 75, 95, 0.16);
 }
 
 .btn-primary:hover,
 .btn-primary:focus-visible {
-    background: #ff2b6d;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0)),
+        #fb6070;
+    box-shadow: 0 16px 34px rgba(240, 75, 95, 0.22);
 }
 
 .btn-outline {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
     border-color: var(--line);
 }
 
@@ -295,21 +388,21 @@ main > section {
    Shared Section Typography
 ========================================================= */
 .content-section {
-    padding: 88px 0;
+    padding: 94px 0;
 }
 
 .section-kicker {
     margin: 0 0 10px;
     color: var(--accent-2);
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     font-weight: 900;
     letter-spacing: 0;
     text-transform: uppercase;
 }
 
 .sub-title {
-    margin: 0 0 20px;
-    font-size: clamp(2.1rem, 5vw, 4.4rem);
+    margin: 0 0 18px;
+    font-size: clamp(2rem, 4.6vw, 3.85rem);
     line-height: 1.05;
     letter-spacing: 0;
 }
@@ -319,8 +412,8 @@ main > section {
     max-width: 780px;
     margin: 0 0 24px;
     color: var(--muted);
-    font-size: 1.04rem;
-    line-height: 1.75;
+    font-size: 1rem;
+    line-height: 1.72;
 }
 
 /* =========================================================
@@ -365,18 +458,18 @@ main > section {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin: 28px 0 22px;
+    margin: 26px 0 22px;
 }
 
 .tab-links {
     min-width: 126px;
-    min-height: 52px;
+    min-height: 48px;
     padding: 0 16px;
     color: var(--text);
     background: var(--surface-2);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    font-weight: 900;
+    font-weight: 800;
     text-transform: uppercase;
     cursor: pointer;
     transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
@@ -385,12 +478,12 @@ main > section {
 .tab-links:hover,
 .tab-links:focus-visible {
     transform: translateY(-2px);
-    border-color: rgba(255, 209, 102, 0.5);
+    border-color: rgba(244, 200, 95, 0.46);
     outline: none;
 }
 
 .tab-links.active-link {
-    color: #080808;
+    color: var(--bg);
     background: var(--accent-3);
     border-color: var(--accent-3);
 }
@@ -407,17 +500,17 @@ main > section {
 
     14% {
         transform: translate3d(-11px, 5px, 0) rotate(-8deg) scale(0.93);
-        box-shadow: 0 0 0 4px rgba(255, 0, 79, 0.45);
+        box-shadow: 0 0 0 4px rgba(240, 75, 95, 0.36);
     }
 
     30% {
         transform: translate3d(10px, -4px, 0) rotate(7deg) scale(1.08);
-        box-shadow: 0 0 0 7px rgba(255, 209, 102, 0.32);
+        box-shadow: 0 0 0 7px rgba(244, 200, 95, 0.26);
     }
 
     48% {
         transform: translate3d(-7px, 3px, 0) rotate(-5deg) scale(1.03);
-        box-shadow: 0 0 0 5px rgba(41, 214, 200, 0.28);
+        box-shadow: 0 0 0 5px rgba(95, 214, 207, 0.22);
     }
 
     68% {
@@ -433,17 +526,17 @@ main > section {
 
 .tab-contents {
     --panel-glow: var(--accent-3);
-    --panel-glow-soft: rgba(255, 209, 102, 0.16);
+    --panel-glow-soft: rgba(244, 200, 95, 0.12);
     position: relative;
     display: none;
-    padding: 24px 24px 24px 30px;
+    padding: 24px 24px 24px 32px;
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.025)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.018)),
         var(--surface);
     border: 1px solid rgba(255, 255, 255, 0.13);
     border-radius: var(--radius);
     max-width: 940px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.2);
     transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
@@ -463,9 +556,9 @@ main > section {
     display: block;
     border-color: var(--panel-glow);
     box-shadow:
-        0 0 0 1px var(--panel-glow-soft),
-        0 18px 48px var(--panel-glow-soft),
-        0 12px 35px rgba(0, 0, 0, 0.28);
+        0 0 0 1px rgba(244, 200, 95, 0.1),
+        0 18px 48px rgba(244, 200, 95, 0.09),
+        0 14px 38px rgba(0, 0, 0, 0.26);
 }
 
 .tab-contents ul {
@@ -479,7 +572,7 @@ main > section {
 .tab-contents li {
     padding: 0 0 14px 0;
     color: var(--muted);
-    line-height: 1.65;
+    line-height: 1.62;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -496,7 +589,7 @@ main > section {
 .s {
     margin: 18px 0 0;
     color: var(--accent-3);
-    font-size: 0.94rem;
+    font-size: 0.9rem;
     font-style: italic;
 }
 
@@ -505,41 +598,43 @@ main > section {
 ========================================================= */
 .services-section,
 .contact-section {
-    background: rgba(255, 255, 255, 0.025);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.016)),
+        rgba(255, 255, 255, 0.018);
     border-block: 1px solid var(--line);
 }
 
 .services-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
+    gap: 20px;
     margin-top: 28px;
 }
 
 .service-card {
-    --service-glow: rgba(255, 209, 102, 0.72);
-    --service-glow-soft: rgba(255, 209, 102, 0.16);
+    --service-glow: rgba(244, 200, 95, 0.66);
+    --service-glow-soft: rgba(244, 200, 95, 0.13);
     position: relative;
-    min-height: 460px;
-    padding: 18px;
+    min-height: 430px;
+    padding: 16px;
     overflow: hidden;
     isolation: isolate;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.22);
     transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
 .service-card:hover,
 .service-card:focus-within {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
     border-color: var(--service-glow);
-    background: #202020;
+    background: var(--surface-2);
     box-shadow:
-        0 0 0 1px var(--service-glow),
+        0 0 0 1px rgba(244, 200, 95, 0.16),
         0 18px 46px var(--service-glow-soft),
-        0 12px 35px rgba(0, 0, 0, 0.22);
+        0 14px 38px rgba(0, 0, 0, 0.24);
 }
 
 .service-showcase {
@@ -556,8 +651,8 @@ main > section {
     inset: 0;
     z-index: 2;
     background:
-        linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.9)),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.24));
+        linear-gradient(180deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.9)),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.22));
 }
 
 .showcase-track {
@@ -580,7 +675,7 @@ main > section {
 }
 
 .showcase-track .active-showcase {
-    opacity: 0.84;
+    opacity: 0.8;
 }
 
 .service-content {
@@ -591,14 +686,14 @@ main > section {
     flex-direction: column;
     justify-content: flex-end;
     gap: 10px;
-    padding: 20px 18px 18px 22px;
+    padding: 19px 18px 18px 24px;
     overflow: hidden;
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02)),
-        rgba(8, 8, 8, 0.42);
+        rgba(7, 9, 12, 0.46);
     border: 1px solid rgba(255, 255, 255, 0.13);
     border-radius: var(--radius);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(7px);
     transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
@@ -638,13 +733,13 @@ main > section {
 
 .service-icons i {
     --icon-bg: var(--accent-2);
-    --icon-glow: rgba(41, 214, 200, 0.28);
+    --icon-glow: rgba(95, 214, 207, 0.22);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 34px;
     height: 34px;
-    color: #080808;
+    color: var(--bg);
     background:
         linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.08)),
         var(--icon-bg);
@@ -659,17 +754,17 @@ main > section {
 
 .service-video .service-icons i {
     --icon-bg: var(--accent);
-    --icon-glow: rgba(255, 0, 79, 0.3);
+    --icon-glow: rgba(240, 75, 95, 0.24);
 }
 
 .service-design .service-icons i {
     --icon-bg: var(--accent-2);
-    --icon-glow: rgba(41, 214, 200, 0.28);
+    --icon-glow: rgba(95, 214, 207, 0.22);
 }
 
 .service-brand .service-icons i {
     --icon-bg: var(--accent-3);
-    --icon-glow: rgba(255, 209, 102, 0.3);
+    --icon-glow: rgba(244, 200, 95, 0.24);
 }
 
 .service-icons i:nth-child(2) {
@@ -695,13 +790,15 @@ main > section {
 
 .service-card h3 {
     margin: 0;
-    font-size: 1.5rem;
-    line-height: 1.15;
+    font-size: 1.36rem;
+    line-height: 1.16;
 }
 
 .service-card p {
     margin: 0;
     color: rgba(255, 255, 255, 0.86);
+    font-size: 0.96rem;
+    line-height: 1.58;
 }
 
 .service-card a {
@@ -748,7 +845,7 @@ main > section {
 
 .featured-section {
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.012)),
         rgba(255, 255, 255, 0.018);
     border-block: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -756,7 +853,7 @@ main > section {
 .featured-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 22px;
+    gap: 20px;
     margin-top: 28px;
 }
 
@@ -776,7 +873,7 @@ main > section {
     padding: 0 16px;
     color: var(--text);
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.025)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.072), rgba(255, 255, 255, 0.022)),
         var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -793,11 +890,11 @@ main > section {
     transform: translateY(-2px);
     border-color: var(--accent-3);
     background:
-        linear-gradient(180deg, rgba(255, 209, 102, 0.16), rgba(255, 255, 255, 0.035)),
+        linear-gradient(180deg, rgba(244, 200, 95, 0.13), rgba(255, 255, 255, 0.032)),
         var(--surface-2);
     box-shadow:
-        0 0 0 1px rgba(255, 209, 102, 0.18),
-        0 14px 34px rgba(255, 209, 102, 0.12);
+        0 0 0 1px rgba(244, 200, 95, 0.14),
+        0 14px 34px rgba(244, 200, 95, 0.1);
     outline: none;
 }
 
@@ -828,7 +925,7 @@ main > section {
 }
 
 .featured-work-card .asset-caption {
-    min-height: 104px;
+    min-height: 92px;
 }
 
 .design-bridge-note {
@@ -860,14 +957,14 @@ main > section {
 
 .work-list {
     display: flex;
-    gap: 22px;
+    gap: 20px;
     margin-top: 28px;
     padding: 12px 0 30px;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scroll-snap-type: x mandatory;
     scroll-padding-inline: 2px;
-    scrollbar-color: var(--accent) rgba(255, 255, 255, 0.12);
+    scrollbar-color: var(--accent-3) rgba(255, 255, 255, 0.12);
 }
 
 .work-list::-webkit-scrollbar {
@@ -879,41 +976,41 @@ main > section {
 }
 
 .work-list::-webkit-scrollbar-thumb {
-    background: var(--accent);
+    background: var(--accent-3);
     border-radius: 999px;
 }
 
 .work {
-    --work-glow: rgba(255, 209, 102, 0.38);
-    --work-glow-soft: rgba(255, 209, 102, 0.16);
-    flex: 0 0 min(410px, 84vw);
+    --work-glow: rgba(244, 200, 95, 0.34);
+    --work-glow-soft: rgba(244, 200, 95, 0.12);
+    flex: 0 0 min(392px, 84vw);
     min-width: 0;
     overflow: hidden;
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.022)),
         var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.22);
     scroll-snap-align: start;
     transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
 .portfolio-section:not(#branding) .work:hover,
 .portfolio-section:not(#branding) .work:focus-within {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
     border-color: var(--work-glow);
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035)),
         var(--surface-2);
     box-shadow:
-        0 0 0 1px var(--work-glow),
+        0 0 0 1px rgba(244, 200, 95, 0.14),
         0 18px 48px var(--work-glow-soft),
-        0 12px 35px rgba(0, 0, 0, 0.3);
+        0 14px 38px rgba(0, 0, 0, 0.28);
 }
 
 .portrait-list .work {
-    flex-basis: min(292px, 74vw);
+    flex-basis: min(282px, 74vw);
 }
 
 .work img,
@@ -964,19 +1061,19 @@ main > section {
 
 .asset-caption {
     position: relative;
-    min-height: 98px;
+    min-height: 88px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 8px;
-    padding: 16px 18px 17px 22px;
+    padding: 15px 17px 16px 22px;
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.038), rgba(255, 255, 255, 0.016)),
         var(--surface);
     border-top: 1px solid rgba(255, 255, 255, 0.11);
     color: var(--muted);
-    font-size: 0.95rem;
-    line-height: 1.55;
+    font-size: 0.92rem;
+    line-height: 1.5;
     transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
 }
 
@@ -989,7 +1086,7 @@ main > section {
     width: 3px;
     background: var(--work-glow, var(--accent-3));
     border-radius: 999px;
-    opacity: 0.84;
+    opacity: 0.74;
 }
 
 .portfolio-section:not(#branding) .work:hover .asset-caption,
@@ -1003,7 +1100,7 @@ main > section {
 .caption-title {
     display: inline-block;
     color: var(--text);
-    font-weight: 800;
+    font-weight: 750;
     line-height: 1.42;
     overflow-wrap: anywhere;
 }
@@ -1013,8 +1110,8 @@ main > section {
     margin: 0;
     padding: 5px 8px;
     color: var(--accent-3);
-    background: rgba(255, 209, 102, 0.08);
-    border: 1px solid rgba(255, 209, 102, 0.24);
+    background: rgba(244, 200, 95, 0.08);
+    border: 1px solid rgba(244, 200, 95, 0.22);
     border-radius: var(--radius);
     font-size: 0.82rem;
     font-weight: 800;
@@ -1029,7 +1126,7 @@ main > section {
     justify-content: center;
     min-height: 34px;
     padding: 0 12px;
-    color: #080808;
+    color: var(--bg);
     background: var(--accent-3);
     border: 1px solid var(--accent-3);
     border-radius: var(--radius);
@@ -1045,7 +1142,7 @@ main > section {
     transform: translateY(-2px);
     background: var(--accent-2);
     border-color: var(--accent-2);
-    box-shadow: 0 12px 28px rgba(41, 214, 200, 0.18);
+    box-shadow: 0 12px 28px rgba(95, 214, 207, 0.14);
     outline: none;
 }
 
@@ -1060,7 +1157,7 @@ main > section {
 .contact-grid {
     display: grid;
     grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
-    gap: 34px;
+    gap: 38px;
     align-items: start;
 }
 
@@ -1069,7 +1166,7 @@ main > section {
 }
 
 .contact-left i {
-    color: var(--accent);
+    color: var(--accent-2);
     margin-right: 10px;
 }
 
@@ -1087,45 +1184,61 @@ main > section {
     width: 46px;
     height: 46px;
     color: var(--text);
-    background: var(--surface);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.018)),
+        var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     font-size: 1.35rem;
     text-decoration: none;
-    transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+    transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 .social-icons a:hover,
 .social-icons a:focus-visible {
-    color: #080808;
+    color: var(--bg);
     background: var(--accent-2);
+    border-color: var(--accent-2);
     transform: translateY(-2px);
     outline: none;
+}
+
+.document-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
 }
 
 .contact-right form {
     display: grid;
     gap: 14px;
-    padding: 22px;
-    background: var(--surface);
+    padding: 24px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.018)),
+        var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.2);
 }
 
 form input,
 form textarea {
     width: 100%;
     color: var(--text);
-    background: #101010;
+    background: rgba(7, 9, 12, 0.72);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     padding: 14px 15px;
     resize: vertical;
+    transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
 form input:focus,
 form textarea:focus {
     border-color: var(--accent-2);
+    background: rgba(7, 9, 12, 0.92);
+    box-shadow: 0 0 0 3px rgba(95, 214, 207, 0.12);
     outline: none;
 }
 
@@ -1244,7 +1357,7 @@ form .btn {
         gap: 0;
         padding: 12px;
         overflow-y: auto;
-        background: rgba(8, 8, 8, 0.98);
+        background: rgba(7, 9, 12, 0.98);
         border: 1px solid var(--line);
         border-radius: var(--radius);
         box-shadow: var(--shadow);
@@ -1320,13 +1433,13 @@ form .btn {
     }
 
     body {
-        background: #080808;
+        background: var(--bg);
     }
 
     .site-hero {
         min-height: 100svh;
         background:
-            linear-gradient(180deg, rgba(8, 8, 8, 0.42), rgba(8, 8, 8, 0.95) 72%),
+            linear-gradient(180deg, rgba(7, 9, 12, 0.38), rgba(7, 9, 12, 0.95) 72%),
             url("images/optimized/phoone-background.webp?v=20260615-optimized") center top / cover no-repeat;
     }
 
@@ -1339,13 +1452,17 @@ form .btn {
     }
 
     .header-text {
-        padding-top: 62svh;
-        padding-bottom: 44px;
+        padding-top: 61svh;
+        padding-bottom: 48px;
         text-align: center;
     }
 
     .header-text h1 {
-        font-size: clamp(2.2rem, 12vw, 3.7rem);
+        font-size: clamp(2.05rem, 11.2vw, 3.35rem);
+    }
+
+    .header-text p {
+        font-size: 0.96rem;
     }
 
     .hero-actions {
@@ -1358,7 +1475,7 @@ form .btn {
     }
 
     .content-section {
-        padding: 64px 0;
+        padding: 66px 0;
     }
 
     .design-bridge-note {
@@ -1375,7 +1492,7 @@ form .btn {
         min-width: 0;
         min-height: 48px;
         padding-inline: 10px;
-        font-size: 0.84rem;
+        font-size: 0.82rem;
     }
 
     .tab-contents {
@@ -1389,11 +1506,11 @@ form .btn {
     }
 
     .work {
-        flex-basis: min(320px, 86vw);
+        flex-basis: min(310px, 86vw);
     }
 
     .portrait-list .work {
-        flex-basis: min(245px, 72vw);
+        flex-basis: min(238px, 72vw);
     }
 
     .graphic-list .work {
@@ -1415,9 +1532,9 @@ form .btn {
     }
 
     .asset-caption {
-        min-height: 88px;
+        min-height: 84px;
         padding: 14px 15px 15px 20px;
-        font-size: 0.9rem;
+        font-size: 0.88rem;
     }
 
     .asset-caption::before {
