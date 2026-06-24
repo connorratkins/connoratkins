@@ -67,11 +67,11 @@
         </nav>
 
         <div class="header-text">
-            <p>HVACR by day | Creator by night</p>
+            <p class="hero-kicker">HVACR by day | Creator by night</p>
             <h1>Hi, I'm <span>Connor</span><br>from Pleasure Island, N.C.</h1>
             <div class="hero-actions">
                 <div class="nav-dropdown hero-dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" aria-expanded="false" aria-controls="hero-portfolio-submenu">
+                    <button class="btn btn-primary dropdown-toggle drawn-target" type="button" aria-expanded="false" aria-controls="hero-portfolio-submenu">
                         View Work
                         <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                     </button>
@@ -85,8 +85,9 @@
                         <li><a href="#branding">Brand Development</a></li>
                     </ul>
                 </div>
-                <a href="#contact" class="btn btn-outline">Contact Me</a>
+                <a href="#contact" class="btn btn-outline drawn-target drawn-target-alt">Contact Me</a>
             </div>
+            <p class="hero-note">pick a lane, follow through</p>
         </div>
     </div>
 </header>
@@ -169,7 +170,7 @@
             <p class="section-kicker">Services</p>
             <h2 class="sub-title">My Services</h2>
             <div class="services-list">
-                <article class="service-card service-video">
+                <article class="service-card service-video" data-step="01">
                     <div class="service-showcase" aria-hidden="true">
                         <div class="showcase-track">
                             <img loading="lazy" decoding="async" class="active-showcase" src="images/public/portfolio/video-final4.webp" alt="">
@@ -195,7 +196,7 @@
                     </div>
                 </article>
 
-                <article class="service-card service-design">
+                <article class="service-card service-design" data-step="02">
                     <div class="service-showcase" aria-hidden="true">
                         <div class="showcase-track">
                             <img loading="lazy" decoding="async" class="active-showcase" src="images/2020-2026/1.png" alt="">
@@ -218,7 +219,7 @@
                     </div>
                 </article>
 
-                <article class="service-card service-brand">
+                <article class="service-card service-brand" data-step="03">
                     <div class="service-showcase" aria-hidden="true">
                         <div class="showcase-track">
                             <img loading="lazy" decoding="async" class="active-showcase" src="images/optimized/branding/1.webp?v=20260615-optimized" alt="">
@@ -253,8 +254,9 @@
             <p class="section-kicker">Start Here</p>
             <h2 class="sub-title">Directors Choice</h2>
             <p class="section-intro">A shorter path through the portfolio before the full video, design, and branding archive below.</p>
+            <p class="annotation-note">click shuffle for a sped up experience</p>
             <div class="featured-controls" aria-label="Best work controls">
-                <button class="featured-control" type="button" id="shuffle-best-work">
+                <button class="featured-control drawn-target" type="button" id="shuffle-best-work">
                     <i class="fa-solid fa-shuffle" aria-hidden="true"></i>
                     <span>Shuffle</span>
                 </button>
@@ -527,7 +529,7 @@
             <p class="section-intro">We all have to start somewhere, and these are the early days of my graphic design journey. Only showcasing to prove my set standard of improving.</p>
             <div class="work-list graphic-list">
                 <article class="work"><img loading="lazy" decoding="async" src="images/optimized/2016-2020/jp-meraki2.webp?v=20260615-optimized" alt="JP Meraki graphic design"><div class="asset-caption"><span class="caption-title">One of my first ever professional designs to be made.</span></div></article>
-                <article class="work"><img loading="lazy" decoding="async" src="images/optimized/2016-2020/hoodidol.webp?v=20260615-optimized" alt="Hood Idol graphic design"><div class="asset-caption"><span class="caption-title">Ish Money in Wilmington, NC. Hood Idol. Brought me straight to a lot of people locally.</span></div></article>
+                <article class="work"><img loading="lazy" decoding="async" src="images/optimized/2016-2020/hoodidol.webp?v=20260615-optimized" alt="Hood Idol graphic design"><div class="asset-caption"><span class="caption-title">Ish Money in Wilmington, NC. Hood Idol. Brought me a lot of work locally.</span></div></article>
                 <article class="work"><img loading="lazy" decoding="async" src="images/optimized/2016-2020/dq2.webp?v=20260615-optimized" alt="DQ2 graphic design"><div class="asset-caption"><span class="caption-title">Eye candy, album cover for a local artist "T Guala".</span></div></article>
                 <article class="work"><img loading="lazy" decoding="async" src="images/optimized/2016-2020/dq1.webp?v=20260615-optimized" alt="DQ1 graphic design"><div class="asset-caption"><span class="caption-title">Hip-hop, rap inspired album cover "Savo 22".</span></div></article>
                 <article class="work"><img loading="lazy" decoding="async" src="images/optimized/2016-2020/nohook.webp?v=20260615-optimized" alt="No Hook graphic design"><div class="asset-caption"><span class="caption-title">DQ "Crash" is my guy I made a ton of stuff while in high school.</span></div></article>
@@ -624,6 +626,7 @@
                 </div>
                 <div class="contact-right">
                     <form id="contact-form" name="contact" method="POST" action="https://api.web3forms.com/submit">
+                        <p class="form-note">send the idea before it talks itself out of existing</p>
                         <input type="hidden" name="access_key" value="4f7badf0-30c4-4083-8208-4a1a78ad6389">
                         <input type="hidden" name="subject" value="New portfolio contact from connorratkins.github.io">
                         <input type="hidden" name="from_name" value="Connor Atkins Portfolio">
@@ -880,12 +883,6 @@
         workCard.dataset.glowIndex = String(colorIndex);
     }
 
-    function applyServiceGlow(serviceCard, colorIndex) {
-        const color = portfolioGlowColors[colorIndex];
-        serviceCard.style.setProperty('--service-glow', color.ring);
-        serviceCard.style.setProperty('--service-glow-soft', color.soft);
-    }
-
     function applyPanelGlow(panel, colorIndex) {
         const color = portfolioGlowColors[colorIndex];
         panel.style.setProperty('--panel-glow', color.ring);
@@ -907,10 +904,6 @@
 
     document.querySelectorAll('.portfolio-section .work').forEach((workCard, index) => {
         applyPortfolioGlow(workCard, index % portfolioGlowColors.length);
-    });
-
-    document.querySelectorAll('.service-card').forEach((serviceCard, index) => {
-        applyServiceGlow(serviceCard, (index + 1) % portfolioGlowColors.length);
     });
 
     tabContents.forEach((panel, index) => {
