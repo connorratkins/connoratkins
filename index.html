@@ -56,7 +56,6 @@
                     </ul>
                 </li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="pdf/Connor-Atkins-Resume-2026.pdf" class="download-link" download="Connor-Atkins-Resume-2026.pdf">Download Resume</a></li>
                 <li class="mobile-close-item">
                     <button
                         class="menu-toggle close-menu"
@@ -616,16 +615,13 @@
                 <div class="contact-left">
                     <p class="section-kicker">Contact</p>
                     <h2 class="sub-title">Contact Me</h2>
-                    <p><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:atkinsconnorr@gmail.com">atkinsconnorr@gmail.com</a></p>
-                    <p><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+19106120538">910-612-0538</a></p>
+
                     <div class="social-icons">
                         <a href="https://www.youtube.com/@CNNREDITS" aria-label="YouTube channel CNNREDDITS"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
                         <a href="https://www.youtube.com/@C6NNR" aria-label="YouTube channel C6NNR"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
                         <a href="https://www.linkedin.com/in/connorratkins/" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
                     </div>
-                    <div class="document-actions" aria-label="Download documents">
-                        <a href="pdf/Connor-Atkins-Resume-2026.pdf" class="btn btn-primary" download="Connor-Atkins-Resume-2026.pdf">Download Resume</a>
-                    </div>
+
                 </div>
                 <div class="contact-right">
                     <form id="contact-form" name="contact" method="POST" action="https://api.web3forms.com/submit">
@@ -639,7 +635,7 @@
                         <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
                         <button type="submit" class="btn btn-primary" id="contact-submit">Submit</button>
                         <p id="contact-success" style="display:none;color:#5fd6cf;margin-top:1rem;font-weight:600;">Message sent! I'll get back to you soon.</p>
-                        <p id="contact-error" style="display:none;color:#f04b5f;margin-top:1rem;font-weight:600;">Something went wrong. Please email me directly at <a href="mailto:atkinsconnorr@gmail.com">atkinsconnorr@gmail.com</a>.</p>
+                        <p id="contact-error" style="display:none;color:#f04b5f;margin-top:1rem;font-weight:600;">Something went wrong. Please contact me directly through another method.</p>
                     </form>
                 </div>
             </div>
@@ -1234,12 +1230,12 @@
                     contactForm.reset();
                 } else {
                     const message = result.message || response.statusText || 'The form service did not accept the message.';
-                    contactError.textContent = `${message} Please email me directly at atkinsconnorr@gmail.com.`;
+                    contactError.textContent = `${message} Please contact me directly through another method.`;
                     contactError.style.display = 'block';
                 }
             } catch (error) {
                 console.error('Contact form submission failed:', error);
-                contactError.textContent = 'The browser blocked the contact form request. Please email me directly at atkinsconnorr@gmail.com.';
+                contactError.textContent = 'The browser blocked the contact form request. Please contact me directly through another method.';
                 contactError.style.display = 'block';
             } finally {
                 contactSubmit.disabled = false;
